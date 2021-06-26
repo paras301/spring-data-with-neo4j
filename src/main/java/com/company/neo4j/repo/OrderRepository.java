@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import com.company.neo4j.vo.Customer;
 import com.company.neo4j.vo.Order;
 
-public interface CustomerRepository extends Neo4jRepository<Customer, Long> {
-	@Query("MATCH (c:Customer {name: $cname }) RETURN c")
-	Customer findCustomerByName(@Param("cname") String cname);
+public interface OrderRepository extends Neo4jRepository<Order, Long> {
+	@Query("MATCH (c:Customer {name: $cname })-[:PLACED]->(o:Order {oid: $oid }) RETURN o")
+	Order findOrderById(@Param("cname") String cname, @Param("oid") String oid);
 }

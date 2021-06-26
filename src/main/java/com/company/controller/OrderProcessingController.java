@@ -15,17 +15,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(value = "/process")
-@Slf4j
 public class OrderProcessingController {
 		
 	@Autowired
 	OrderProcessingService orderProcessingService;
 	
 	@PostMapping(value = "/customerorder")
-	public ResponseEntity<Object> processPenfed(@RequestBody OrderCartInput req) throws Exception {
+	public String processPenfed(@RequestBody OrderCartInput req) throws Exception {
 		
-		orderProcessingService.processOrder(req);
-		return new ResponseEntity<>("Order Processed Successfully!", HttpStatus.CREATED);
+		return orderProcessingService.processOrder(req);
 	}
 
 }
